@@ -7,7 +7,7 @@
 
 ## 📁 项目概述
 
-**项目类型**：前端项目（静态网页）
+**项目类型**：前端项目（静态网站）
 **项目用途**：个人项目
 **团队规模**：个人项目
 **仓库地址**：https://github.com/Ekko7778/claude-skills-guide
@@ -17,16 +17,19 @@
 
 ## 🛠️ 技术栈
 
-### 前端技术
-- **框架**：纯 HTML（无框架）
-- **样式方案**：Tailwind CSS（通过 CDN）
+### 前端框架
+- **框架**：Astro 4.x（现代静态网站生成器）
+- **组件类型**：Astro 组件（.astro）
+- **样式方案**：Tailwind CSS 3.x（通过 @astrojs/tailwind 集成）
 - **字体**：Inter（主字体）+ JetBrains Mono（代码字体）
-- **构建方式**：无需构建，直接使用 HTML
+- **语言**：TypeScript
+- **构建工具**：Vite（Astro 内置）
 
 ### 部署
 - **平台**：GitHub Pages
 - **分支**：main
-- **自动部署**：推送到 main 分支后自动触发
+- **自动部署**：推送到 main 分支后通过 GitHub Actions 自动触发
+- **构建输出**：dist/ 目录
 
 ---
 
@@ -35,14 +38,51 @@
 ```
 index/
 ├── .claude/
-│   └── CLAUDE.md       # 项目配置文件（本文件）
-├── index.html          # 主网页文件
-└── README.md           # 项目说明文档
+│   └── CLAUDE.md              # 项目配置文件（本文件）
+├── .github/
+│   └── workflows/
+│       └── deploy.yml         # GitHub Actions 自动部署配置
+├── src/
+│   ├── pages/
+│   │   └── index.astro        # 主页入口
+│   ├── components/
+│   │   ├── Header.astro       # 导航栏组件
+│   │   ├── Hero.astro         # Hero 区域组件
+│   │   ├── WhatIsSkill.astro  # "什么是 Skills" 区域组件
+│   │   ├── ThemeToggle.astro  # 主题切换按钮组件
+│   │   └── Footer.astro       # 页脚组件
+│   ├── layouts/
+│   │   └── BaseLayout.astro   # 基础布局组件
+│   └── styles/
+│       └── global.css         # 全局样式（含主题变量）
+├── public/                     # 静态资源目录
+├── astro.config.mjs           # Astro 配置文件
+├── tailwind.config.mjs        # Tailwind CSS 配置
+├── tsconfig.json              # TypeScript 配置
+└── package.json               # 项目依赖和脚本
 ```
 
 ---
 
 ## 🔄 开发流程
+
+### 本地开发命令
+```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器（默认端口 4321）
+npm run dev
+
+# 使用其他端口
+npm run dev -- --port 3000
+
+# 构建生产版本
+npm run build
+
+# 预览构建结果
+npm run preview
+```
 
 ### 代码修改流程
 1. 用户提出需求
@@ -119,16 +159,50 @@ index/
 
 ## 📐 代码规范
 
-### HTML 规范
+### Astro 组件规范
 - 使用语义化标签
-- Tailwind 类名顺序：布局 → 间距 → 颜色 → 其他
+- 组件文件名使用 PascalCase（如 `Header.astro`）
 - 代码缩进：2 空格
+- 前置代码（fence）使用 TypeScript
+- Props 必须定义接口
+
+**示例**：
+```astro
+---
+// 组件前置代码区
+interface Props {
+  title?: string;
+}
+
+const { title = '默认标题' } = Astro.props;
+---
+
+<!-- 模板区 -->
+<div class="container">
+  <h1>{title}</h1>
+</div>
+```
+
+### Tailwind CSS 规范
+- **类名顺序**：布局 → 间距 → 颜色 → 排版 → 其他
+- **避免内联样式**：优先使用 Tailwind 类名
+- **自定义样式**：在 `global.css` 中定义
 
 ### 主题规范
-- **默认主题**：深色模式
+- **默认主题**：深色模式（`html` 元素默认带 `dark` 类）
 - **主题切换**：通过 `html` 元素的 `dark` 类控制
+- **防止闪烁**：主题初始化脚本必须内联在 `<head>` 中（`is:inline`）
 - **样式覆盖**：浅色主题使用 `html:not(.dark)` 选择器
 - **保持深色模式不变**：深色模式样式必须保持原有样式，不改动
+
+**主题切换原理**：
+```javascript
+// 保存到 localStorage
+localStorage.setItem('theme', 'light'); // 或 'dark'
+
+// 切换 dark 类
+document.documentElement.classList.toggle('dark');
+```
 
 ### 颜色使用
 ```css
@@ -142,7 +216,7 @@ html:not(.dark) .text-gray-400 { color: #4b5563; }
 html:not(.dark) .text-gray-300 { color: #374151; }
 ```
 
-### JavaScript 规范
+### TypeScript/JavaScript 规范
 - 使用 ES6+ 语法
 - 函数命名：camelCase
 - 添加详细中文注释
@@ -159,8 +233,8 @@ html:not(.dark) .text-gray-300 { color: #374151; }
 ### Q：如何验证代码修改？
 **A：** 必须使用 Chrome DevTools 进行完整验证：
 ```javascript
-// 1. 打开页面
-mcp__chrome-devtools__navigate_page({ url: "https://ekko7778.github.io/claude-skills-guide/" })
+// 1. 打开页面（本地开发或线上地址）
+mcp__chrome-devtools__navigate_page({ url: "http://localhost:4321" })
 
 // 2. 检查控制台
 mcp__chrome-devtools__list_console_messages()
@@ -172,16 +246,32 @@ mcp__chrome-devtools__take_screenshot({ fullPage: true })
 ### Q：深色模式的样式可以改吗？
 **A：** 尽量保持不变。如需修改，必须确保深色模式完全保持原有效果。
 
+### Q：样式不生效怎么办？
+**A：** 清除缓存并重新构建：
+```bash
+rm -rf .astro dist node_modules
+npm install
+npm run dev
+```
+
+### Q：端口 4321 被占用怎么办？
+**A：** 使用其他端口：
+```bash
+npm run dev -- --port 3000
+```
+
 ---
 
 ## 📚 相关资源
 
 - **GitHub 仓库**：https://github.com/Ekko7778/claude-skills-guide
 - **GitHub Pages**：https://ekko7778.github.io/claude-skills-guide/
+- **Astro 文档**：https://docs.astro.build
 - **Tailwind CSS 文档**：https://tailwindcss.com/docs
+- **TypeScript 文档**：https://www.typescriptlang.org/docs
 
 ---
 
 *配置生成时间：2025-01-08*
-*配置版本：1.1*
-*最后更新：添加图片处理强制规则*
+*配置版本：2.0*
+*更新内容：更新技术栈为 Astro + Tailwind CSS + TypeScript*

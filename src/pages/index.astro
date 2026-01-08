@@ -1,0 +1,53 @@
+---
+// index.astro - 主页
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import WhatIsSkill from '../components/WhatIsSkill.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import CreateSkill from '../components/CreateSkill.astro';
+import DesignSpecs from '../components/DesignSpecs.astro';
+import OfficialSkills from '../components/OfficialSkills.astro';
+import Examples from '../components/Examples.astro';
+import BestPractices from '../components/BestPractices.astro';
+import QuickReference from '../components/QuickReference.astro';
+import Resources from '../components/Resources.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout>
+  <Header />
+  <Hero />
+  <WhatIsSkill />
+  <HowItWorks />
+  <CreateSkill />
+  <DesignSpecs />
+  <OfficialSkills />
+  <Examples />
+  <BestPractices />
+  <QuickReference />
+  <Resources />
+  <Footer />
+
+  <!-- 滚动动画初始化脚本 -->
+  <script>
+    // Section 进入动画
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    // 观察所有 section-enter 元素
+    document.querySelectorAll('.section-enter').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</BaseLayout>

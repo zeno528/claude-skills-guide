@@ -1,0 +1,169 @@
+---
+// Examples.astro - "常见 Skill 示例" 区域
+---
+
+<section id="examples" class="py-20 px-4">
+  <div class="max-w-6xl mx-auto section-enter">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">常见 Skill 示例</h2>
+
+      <!-- 装饰线 -->
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+      </div>
+
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        从简单到复杂，覆盖常见使用场景
+      </p>
+    </div>
+
+    <!-- 示例标签页 -->
+    <div class="space-y-8">
+      <!-- 示例 1: 提交信息助手 -->
+      <div class="glass-card rounded-3xl overflow-hidden">
+        <div class="p-6 border-b border-claude-border">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-claude-primary/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-claude-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">提交信息助手</h3>
+              <p class="text-gray-400 text-sm">单文件 Skill - 自动生成规范的 Git 提交信息</p>
+            </div>
+          </div>
+          <div class="code-block rounded-xl p-4 overflow-x-auto">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="text-gray-500">---</span>
+<span class="text-claude-accent">name</span>: <span class="text-green-400">generating-commit-messages</span>
+<span class="text-claude-accent">description</span>: <span class="text-green-400">从 git diff 生成清晰的提交信息。使用当用户需要写提交信息或查看暂存的更改时。</span>
+<span class="text-gray-500">---</span>
+
+<span class="text-claude-primary"># Generating Commit Messages</span>
+
+<span class="text-claude-secondary">## Instructions</span>
+<span class="text-white">1. 运行 `git diff --staged` 查看变更</span>
+<span class="text-white">2. 建议包含以下内容的提交信息：</span>
+<span class="text-white">   - 50字符以内的摘要</span>
+<span class="text-white">   - 详细描述</span>
+<span class="text-white">   - 受影响的组件</span>
+
+<span class="text-claude-secondary">## Best Practices</span>
+<span class="text-white">- 使用现在时态</span>
+<span class="text-white">- 解释"做什么"和"为什么"，而不是"怎么做"</span></code></pre>
+          </div>
+        </div>
+        <div class="p-6 bg-claude-primary/5">
+          <h4 class="font-bold mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 text-claude-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            使用方式
+          </h4>
+          <p class="text-gray-300">只需说：<span class="text-claude-primary">"帮我写个提交信息"</span> 或 <span class="text-claude-primary">"看看我暂存了什么"</span></p>
+        </div>
+      </div>
+
+      <!-- 示例 2: PDF 处理专家 -->
+      <div class="glass-card rounded-3xl overflow-hidden">
+        <div class="p-6 border-b border-claude-border">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-claude-secondary/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-claude-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">PDF 处理专家</h3>
+              <p class="text-gray-400 text-sm">多文件 Skill - 支持文档、脚本、权限控制</p>
+            </div>
+          </div>
+          <div class="code-block rounded-xl p-4 overflow-x-auto">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="text-gray-500">---</span>
+<span class="text-claude-accent">name</span>: <span class="text-green-400">pdf</span>
+<span class="text-claude-accent">description</span>: <span class="text-green-400">从 PDF 提取文本和表格，填充表单，合并文档。处理 PDF 文件时使用，或当用户提及 PDF、表单、文档提取时。</span>
+<span class="text-claude-accent">allowed-tools</span>: <span class="text-green-400">Read, Bash(python:*)</span>
+<span class="text-gray-500">---</span>
+
+<span class="text-claude-primary"># PDF Processing Guide</span>
+
+<span class="text-claude-secondary">## Overview</span>
+<span class="text-white">本指南涵盖基本的 PDF 处理操作。高级功能见 reference.md，表单填写见 forms.md。</span>
+
+<span class="text-claude-secondary">## Quick Start</span>
+```python
+<span class="text-white">from pypdf import PdfReader</span>
+<span class="text-white">reader = PdfReader("document.pdf")</span>
+<span class="text-white">text = "".join(page.extract_text() for page in reader.pages)</span>
+```
+
+<span class="text-claude-secondary">## Additional Resources</span>
+<span class="text-white">- 表单字段映射见 </span><a href="#" class="text-claude-secondary">forms.md</a>
+<span class="text-white">- API 详细信息见 </span><a href="#" class="text-claude-secondary">reference.md</a></code></pre>
+          </div>
+        </div>
+        <div class="p-6 bg-claude-secondary/5">
+          <h4 class="font-bold mb-4">文件结构</h4>
+          <div class="code-block rounded-xl p-4 text-sm inline-block">
+            <pre class="font-mono"><code class="text-white">pdf/
+├── SKILL.md
+├── forms.md
+├── reference.md
+└── scripts/</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <!-- 示例 3: 代码审查标准 -->
+      <div class="glass-card rounded-3xl overflow-hidden">
+        <div class="p-6 border-b border-claude-border">
+          <div class="flex items-center gap-4 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-claude-accent/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-claude-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 01-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 01-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+              </svg>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold">代码审查标准</h3>
+              <p class="text-gray-400 text-sm">企业级 Skill - 定义团队代码审查规范</p>
+            </div>
+          </div>
+          <div class="code-block rounded-xl p-4 overflow-x-auto">
+            <pre class="font-mono text-sm leading-relaxed"><code><span class="text-gray-500">---</span>
+<span class="text-claude-accent">name</span>: <span class="text-green-400">team-code-review</span>
+<span class="text-claude-accent">description</span>: <span class="text-green-400">按照团队标准审查代码质量。检查错误处理、类型安全、性能优化、安全性。使用当用户要求代码审查、PR 审查或质量检查时。</span>
+<span class="text-claude-accent">allowed-tools</span>: <span class="text-green-400">Read, Grep, Glob</span>
+<span class="text-gray-500">---</span>
+
+<span class="text-claude-primary"># Team Code Review Standards</span>
+
+<span class="text-claude-secondary">## Review Checklist</span>
+<span class="text-white">1. **错误处理**：所有可能失败的操作都有 try-catch</span>
+<span class="text-white">2. **类型安全**：TypeScript 严格模式，无 any 类型</span>
+<span class="text-white">3. **性能**：无不必要的渲染，优化大列表</span>
+<span class="text-white">4. **安全**：无 XSS/SQL 注入风险，验证输入</span>
+<span class="text-white">5. **可读性**：命名清晰，适当注释</span>
+
+<span class="text-claude-secondary">## Output Format</span>
+<span class="text-white">按优先级输出问题：</span>
+<span class="text-white">- 🔴 严重：安全漏洞、崩溃风险</span>
+<span class="text-white">- 🟡 警告：性能问题、代码异味</span>
+<span class="text-white">- 💡 建议：最佳实践、可读性</span></code></pre>
+          </div>
+        </div>
+        <div class="p-6 bg-claude-accent/5">
+          <h4 class="font-bold mb-3 flex items-center gap-2">
+            <svg class="w-5 h-5 text-claude-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            使用方式
+          </h4>
+          <p class="text-gray-300">只需说：<span class="text-claude-accent">"审查这个 PR"</span> 或 <span class="text-claude-accent">"检查代码质量"</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

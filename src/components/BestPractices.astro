@@ -1,0 +1,188 @@
+---
+// BestPractices.astro - "编写高质量 Skills" 区域
+---
+
+<section id="best-practices" class="py-20 px-4 bg-gradient-to-b from-claude-dark to-claude-card">
+  <div class="max-w-6xl mx-auto section-enter">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">编写高质量 Skills</h2>
+
+      <!-- 装饰线 -->
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+      </div>
+
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        基于官方 Skills 分析的实战准则
+      </p>
+    </div>
+
+    <!-- 实践卡片 -->
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <!-- 卡片 1 -->
+      <div class="glass-card rounded-2xl p-6 hover:border-claude-success/50 transition-colors">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-claude-success/20 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-claude-success" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">编写精确的 Description</h3>
+            <p class="text-gray-400 text-sm mb-3">description 是 Claude 匹配的关键信号</p>
+            <div class="code-block rounded-lg p-3 text-xs">
+              <p class="text-red-400 mb-2"><span class="font-bold">❌ 模糊：</span> Helps with documents</p>
+              <p class="text-claude-success"><span class="font-bold">✅ 精确：</span> Extract text and tables from PDF files, fill forms, merge documents. Use when working with PDF files or when user mentions PDFs, forms, or document extraction.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 2 -->
+      <div class="glass-card rounded-2xl p-6 hover:border-claude-primary/50 transition-colors">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-claude-primary/20 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-claude-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">使用渐进式披露</h3>
+            <p class="text-gray-400 text-sm mb-3">保持 SKILL.md 轻量，详细内容放单独文件</p>
+            <div class="code-block rounded-lg p-3 text-xs">
+              <p class="text-white">SKILL.md: 核心指令 + 快速开始</p>
+              <p class="text-white">reference.md: 完整 API 文档</p>
+              <p class="text-white">examples.md: 详细示例</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 3 -->
+      <div class="glass-card rounded-2xl p-6 hover:border-claude-secondary/50 transition-colors">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-claude-secondary/20 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-claude-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">限制工具权限</h3>
+            <p class="text-gray-400 text-sm mb-3">使用 allowed-tools 保护安全边界</p>
+            <div class="code-block rounded-lg p-3 text-xs">
+              <p class="text-white">只读 Skill: <span class="text-claude-secondary">allowed-tools: Read, Grep, Glob</span></p>
+              <p class="text-white">数据处理: <span class="text-claude-secondary">allowed-tools: Bash(python:*)</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 卡片 4 -->
+      <div class="glass-card rounded-2xl p-6 hover:border-claude-accent/50 transition-colors">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-xl bg-claude-accent/20 flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5 text-claude-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-bold mb-2">脚本零上下文执行</h3>
+            <p class="text-gray-400 text-sm mb-3">脚本执行只加载输出，不加载代码</p>
+            <div class="code-block rounded-lg p-3 text-xs">
+              <p class="text-white">scripts/validate.py - 执行但不读取</p>
+              <p class="text-white">只有输出消耗 token，结果可靠</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 官方 Skills 最佳实践 -->
+    <div class="glass-card rounded-3xl p-8">
+      <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+        <svg class="w-7 h-7 text-claude-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 01-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 01-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
+        </svg>
+        从官方 Skills 学到的最佳实践
+      </h3>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-bold mb-4 text-claude-primary">指令编写风格</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">结构化分层</strong>：使用明确的 ## 标题层级（Overview → Quick Start → Advanced）</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">CRITICAL 标记</strong>：关键步骤用 ⚠️ 或 **CRITICAL** 强调</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">示例驱动</strong>：每个概念都有具体代码示例</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">避免 vs 坚持</strong>：明确说明应该做什么和不应该做什么</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-claude-secondary">文件组织策略</h4>
+          <ul class="space-y-3 text-sm">
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">templates/ 目录</strong>：存储可复用的模板文件（如 HTML 模板）</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">reference/ 子目录</strong>：按语言或主题组织参考文档</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">examples/ 目录</strong>：提供完整的示例代码</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="text-claude-success shrink-0 mt-0.5">✓</span>
+              <span class="text-gray-300"><strong class="text-white">LICENSE.txt</strong>：每个 Skill 都包含许可证文件</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 常见问题排查 -->
+    <div class="glass-card rounded-3xl p-8 mt-8">
+      <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+        <svg class="w-7 h-7 text-claude-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+        </svg>
+        常见问题排查
+      </h3>
+      <div class="space-y-6">
+        <div class="border-l-4 border-claude-error pl-6">
+          <h4 class="font-bold mb-2 text-claude-error">Skill 未触发</h4>
+          <p class="text-gray-400 text-sm mb-2"><strong>原因：</strong>description 太模糊，无法匹配</p>
+          <p class="text-gray-400 text-sm"><strong>解决：</strong>包含具体动作和触发关键词，如 "从 PDF 提取文本、填充表单、合并文档"</p>
+        </div>
+        <div class="border-l-4 border-claude-warning pl-6">
+          <h4 class="font-bold mb-2 text-claude-warning">Skill 未加载</h4>
+          <p class="text-gray-400 text-sm mb-2"><strong>检查：</strong></p>
+          <ul class="text-gray-400 text-sm space-y-1">
+            <li>• 文件路径正确：<code class="text-claude-accent">~/.claude/skills/my-skill/SKILL.md</code></li>
+            <li>• YAML 语法正确：用空格不用 Tab</li>
+            <li>• 使用 <code class="text-claude-accent">claude --debug</code> 查看错误</li>
+          </ul>
+        </div>
+        <div class="border-l-4 border-claude-primary pl-6">
+          <h4 class="font-bold mb-2 text-claude-primary">多 Skills 冲突</h4>
+          <p class="text-gray-400 text-sm mb-2"><strong>原因：</strong>description 太相似</p>
+          <p class="text-gray-400 text-sm"><strong>解决：</strong>用具体触发词区分，如 "销售数据 Excel 分析" vs "日志文件分析"</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

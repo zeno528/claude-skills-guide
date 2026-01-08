@@ -1,0 +1,94 @@
+---
+// DesignSpecs.astro - "设计规范" 区域
+---
+
+<section id="design-specs" class="py-20 px-4 bg-gradient-to-b from-claude-card to-claude-dark">
+  <div class="max-w-6xl mx-auto section-enter">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Skill 设计规范</h2>
+
+      <!-- 装饰线 -->
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+      </div>
+
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        遵循官方最佳实践，创建高质量、可维护的 Skills
+      </p>
+    </div>
+
+    <!-- 核心设计原则 -->
+    <div class="glass-card rounded-3xl p-8 mb-12">
+      <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+        <svg class="w-7 h-7 text-claude-warning" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        核心设计原则
+      </h3>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 保持简洁 -->
+        <div class="p-6 bg-claude-error/5 border border-claude-error/20 rounded-xl">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-claude-error/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-claude-error" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-claude-error">保持简洁</h4>
+          </div>
+          <div class="code-block rounded-lg p-4 mb-4">
+            <p class="text-sm font-mono text-claude-error">SKILL.md 应 < 500 行</p>
+          </div>
+          <p class="text-sm text-gray-300">核心信息放在 SKILL.md，详细内容放到支持文件。保持主文件简洁，确保快速加载和易于维护。</p>
+        </div>
+
+        <!-- 渐进式披露 -->
+        <div class="p-6 bg-claude-primary/5 border border-claude-primary/20 rounded-xl">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-lg bg-claude-primary/20 flex items-center justify-center">
+              <svg class="w-5 h-5 text-claude-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+              </svg>
+            </div>
+            <h4 class="font-bold text-claude-primary">渐进式披露</h4>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="code-block rounded-lg p-3">
+              <p class="font-mono text-white">SKILL.md - 核心指令 + 快速开始</p>
+            </div>
+            <div class="code-block rounded-lg p-3">
+              <p class="font-mono text-white">reference.md - 完整 API 文档</p>
+            </div>
+            <div class="code-block rounded-lg p-3">
+              <p class="font-mono text-white">examples.md - 详细使用示例</p>
+            </div>
+          </div>
+          <p class="text-sm text-gray-300 mt-4">详细内容按需加载，节省 token 使用的核心策略。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 设计规范提醒 -->
+    <div class="glass-card rounded-3xl p-8">
+      <h3 class="text-2xl font-bold mb-6">完整设计规范参考</h3>
+      <p class="text-gray-400 mb-6">
+        官方文档提供了详细的 Skill 设计指南，包括结构、样式、权限控制等各个方面。
+      </p>
+      <a
+        href="https://docs.anthropic.com/en/docs/build-with-claude/agent-skills"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-claude-primary/20 border border-claude-primary/30 rounded-xl font-semibold hover:bg-claude-primary/30 transition-colors text-claude-primary"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+        </svg>
+        查看官方设计规范
+      </a>
+    </div>
+  </div>
+</section>

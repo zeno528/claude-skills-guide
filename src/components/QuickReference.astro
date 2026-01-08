@@ -1,0 +1,36 @@
+---
+// QuickReference.astro - "快速参考" 区域
+---
+
+<section class="py-20 px-4 bg-gradient-to-b from-claude-card to-claude-dark">
+  <div class="max-w-4xl mx-auto section-enter">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4">快速参考</h2>
+      <p class="text-gray-400">常用命令和路径</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="glass-card rounded-2xl p-6">
+        <h4 class="font-bold mb-4 text-claude-primary">存储路径</h4>
+        <div class="space-y-2 text-sm font-mono">
+          <p><span class="text-gray-500">Personal:</span> <span class="text-green-400">~/.claude/skills/</span></p>
+          <p><span class="text-gray-500">Project:</span> <span class="text-green-400">.claude/skills/</span></p>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-6">
+        <h4 class="font-bold mb-4 text-claude-secondary">调试命令</h4>
+        <div class="space-y-2 text-sm font-mono">
+          <p><span class="text-claude-accent">claude --debug</span> <span class="text-gray-500"># 查看加载错误</span></p>
+          <p><span class="text-claude-accent">"What Skills available?"</span> <span class="text-gray-500"># 列出 Skills</span></p>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-6">
+        <h4 class="font-bold mb-4 text-claude-success">Description 公式</h4>
+        <p class="text-sm text-gray-400">[动作清单] + [触发场景] + [使用时机]</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6">
+        <h4 class="font-bold mb-4 text-claude-accent">必备文件</h4>
+        <p class="text-sm text-gray-400"><span class="font-mono text-claude-accent">SKILL.md</span> (必需，大写)</p>
+      </div>
+    </div>
+  </div>
+</section>

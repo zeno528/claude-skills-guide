@@ -1,0 +1,150 @@
+---
+// HowItWorks.astro - "工作原理" 区域
+---
+
+<section id="how-it-works" class="py-20 px-4 bg-gradient-to-b from-claude-dark to-claude-card">
+  <div class="max-w-6xl mx-auto section-enter">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Skills 如何工作？</h2>
+
+      <!-- 装饰线 -->
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+      </div>
+
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        当你发送请求时，Claude 经过以下步骤找到并使用相关的 Skills
+      </p>
+    </div>
+
+    <!-- Process Flow -->
+    <div class="relative">
+      <!-- 连接线 -->
+      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-claude-primary via-claude-secondary to-claude-accent transform -translate-x-1/2"></div>
+
+      <div class="space-y-12">
+        <!-- Step 1 -->
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div class="flex-1 lg:text-right lg:pr-12">
+            <div class="glass-card rounded-2xl p-6 inline-block">
+              <h3 class="text-xl font-bold mb-2 text-claude-primary">用户发送请求</h3>
+              <p class="text-gray-400">例如："帮我看看这个 PR 的代码质量"</p>
+            </div>
+          </div>
+          <div class="w-12 h-12 rounded-full bg-claude-primary flex items-center justify-center text-xl font-bold z-10 shrink-0">1</div>
+          <div class="flex-1 lg:pl-12"></div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div class="flex-1 lg:pr-12"></div>
+          <div class="w-12 h-12 rounded-full bg-claude-secondary flex items-center justify-center text-xl font-bold z-10 shrink-0">2</div>
+          <div class="flex-1 lg:pl-12">
+            <div class="glass-card rounded-2xl p-6 inline-block">
+              <h3 class="text-xl font-bold mb-2 text-claude-secondary">意图识别 & 技能匹配</h3>
+              <p class="text-gray-400">Claude 分析请求，在所有 Skills 中查找匹配的 description</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div class="flex-1 lg:text-right lg:pr-12">
+            <div class="glass-card rounded-2xl p-6 inline-block">
+              <h3 class="text-xl font-bold mb-2" style="color: #f59e0b;">加载 Skill 内容</h3>
+              <p class="text-gray-400">SKILL.md 加载到上下文，支持文件按需加载</p>
+            </div>
+          </div>
+          <div class="w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold z-10 shrink-0" style="background: #f59e0b;">3</div>
+          <div class="flex-1 lg:pl-12"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex flex-col lg:flex-row items-center gap-8">
+          <div class="flex-1 lg:pr-12"></div>
+          <div class="w-12 h-12 rounded-full bg-claude-success flex items-center justify-center text-xl font-bold z-10 shrink-0">4</div>
+          <div class="flex-1 lg:pl-12">
+            <div class="glass-card rounded-2xl p-6 inline-block">
+              <h3 class="text-xl font-bold mb-2 text-claude-success">生成响应</h3>
+              <p class="text-gray-400">Claude 按照 Skill 的指令生成符合标准的响应</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skill Locations -->
+    <div class="mt-20">
+      <h3 class="text-2xl font-bold mb-8 text-center">Skills 存储位置与优先级</h3>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="glass-card rounded-xl p-6 border-2 border-claude-primary relative">
+          <div class="absolute -top-3 left-4 px-3 py-1 bg-claude-primary text-white text-xs font-bold rounded-full">最高优先级</div>
+          <h4 class="font-bold mb-2 mt-2">Enterprise</h4>
+          <p class="text-sm text-gray-400 mb-3">组织级设置路径</p>
+          <p class="text-xs text-gray-500">组织内所有用户</p>
+        </div>
+        <div class="glass-card rounded-xl p-6 border border-claude-secondary relative">
+          <div class="absolute -top-3 left-4 px-3 py-1 bg-claude-secondary text-white text-xs font-bold rounded-full">个人级</div>
+          <h4 class="font-bold mb-2 mt-2">Personal</h4>
+          <code class="text-sm text-claude-secondary block mb-3">~/.claude/skills/</code>
+          <p class="text-xs text-gray-500">你个人，所有项目</p>
+        </div>
+        <div class="glass-card rounded-xl p-6 border border-claude-accent relative">
+          <div class="absolute -top-3 left-4 px-3 py-1 bg-claude-accent text-white text-xs font-bold rounded-full">项目级</div>
+          <h4 class="font-bold mb-2 mt-2">Project</h4>
+          <code class="text-sm text-claude-accent block mb-3">.claude/skills/</code>
+          <p class="text-xs text-gray-500">仓库内所有协作者</p>
+        </div>
+        <div class="glass-card rounded-xl p-6 border border-gray-500 relative">
+          <div class="absolute -top-3 left-4 px-3 py-1 bg-gray-500 text-white text-xs font-bold rounded-full">最低优先级</div>
+          <h4 class="font-bold mb-2 mt-2">Plugin</h4>
+          <p class="text-sm text-gray-400 mb-3">随插件打包</p>
+          <p class="text-xs text-gray-500">安装该插件的任何人</p>
+        </div>
+      </div>
+      <p class="text-center text-gray-500 mt-6 text-sm">如果两个 Skills 同名，优先级高的会覆盖优先级低的</p>
+    </div>
+
+    <!-- Platform Support -->
+    <div class="mt-20 glass-card rounded-3xl p-8">
+      <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+        <svg class="w-7 h-7 text-claude-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+        </svg>
+        平台支持
+      </h3>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-claude-primary/5 border border-claude-primary/20 rounded-xl">
+          <h4 class="font-bold mb-3 text-claude-primary">Claude Code</h4>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>• 完整 Skills 支持</li>
+            <li>• Plugin Marketplace</li>
+            <li>• 四级优先级</li>
+            <li>• 零上下文脚本执行</li>
+          </ul>
+        </div>
+        <div class="p-6 bg-claude-secondary/5 border border-claude-secondary/20 rounded-xl">
+          <h4 class="font-bold mb-3 text-claude-secondary">Claude.ai</h4>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>• 付费计划包含 Skills</li>
+            <li>• 项目级 Skills</li>
+            <li>• 通过 Claude Code 创建</li>
+            <li>• 网页界面使用</li>
+          </ul>
+        </div>
+        <div class="p-6 bg-claude-accent/5 border border-claude-accent/20 rounded-xl">
+          <h4 class="font-bold mb-3 text-claude-accent">Claude API</h4>
+          <ul class="text-sm text-gray-400 space-y-2">
+            <li>• Skills API Quickstart</li>
+            <li>• 程序化调用</li>
+            <li>• 自定义 Skill 加载</li>
+            <li>• API 文档参考</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,84 @@
+---
+// Header.astro - 导航栏组件
+import ThemeToggle from './ThemeToggle.astro';
+---
+
+<!-- Navigation -->
+<nav class="fixed top-4 left-4 right-4 z-50">
+  <div class="max-w-7xl mx-auto">
+    <div class="glass-card rounded-2xl px-6 py-4 flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-claude-primary to-claude-secondary shadow-lg shadow-claude-primary/30">
+          <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <span class="font-bold text-lg">Agent Skills</span>
+      </div>
+
+      <!-- 桌面端导航链接 -->
+      <div class="flex items-center gap-3">
+        <div class="hidden lg:flex items-center gap-1">
+          <a href="#what-is-skill" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">什么是 Skills</a>
+          <a href="#how-it-works" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">工作原理</a>
+          <a href="#create-skill" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">创建 Skill</a>
+          <a href="#design-specs" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">设计规范</a>
+          <span class="text-gray-600 mx-1">•</span>
+          <a href="#official-skills" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">官方 Skills</a>
+          <a href="#examples" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">示例</a>
+          <a href="#best-practices" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">最佳实践</a>
+        </div>
+
+        <!-- 中等屏幕简化导航 -->
+        <div class="hidden md:flex lg:hidden items-center gap-1">
+          <a href="#what-is-skill" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">介绍</a>
+          <a href="#create-skill" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">创建</a>
+          <a href="#official-skills" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">官方</a>
+          <a href="#examples" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">示例</a>
+        </div>
+
+        <!-- 主题切换按钮 -->
+        <ThemeToggle />
+
+        <!-- 移动端菜单按钮 -->
+        <button id="mobile-menu-btn" class="md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-claude-dark/95 backdrop-blur-lg hidden">
+  <div class="flex flex-col items-center justify-center h-full gap-8 text-2xl">
+    <a href="#what-is-skill" class="mobile-nav-link text-gray-300 hover:text-white">什么是 Skills</a>
+    <a href="#how-it-works" class="mobile-nav-link text-gray-300 hover:text-white">工作原理</a>
+    <a href="#create-skill" class="mobile-nav-link text-gray-300 hover:text-white">创建 Skill</a>
+    <a href="#design-specs" class="mobile-nav-link text-gray-300 hover:text-white">设计规范</a>
+    <a href="#official-skills" class="mobile-nav-link text-gray-300 hover:text-white">官方 Skills</a>
+    <a href="#examples" class="mobile-nav-link text-gray-300 hover:text-white">示例</a>
+    <a href="#best-practices" class="mobile-nav-link text-gray-300 hover:text-white">最佳实践</a>
+  </div>
+</div>
+
+<script>
+  // 移动端菜单切换
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // 点击链接后关闭菜单
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+  mobileNavLinks.forEach(link => {
+    link?.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>

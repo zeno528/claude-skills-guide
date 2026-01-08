@@ -1,0 +1,118 @@
+---
+// CreateSkill.astro - "如何创建 Skill" 区域
+---
+
+<section id="create-skill" class="py-20 px-4">
+  <div class="max-w-6xl mx-auto section-enter">
+    <!-- 标题区域 -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">如何创建 Skill</h2>
+
+      <!-- 装饰线 -->
+      <div class="flex items-center justify-center gap-4 mb-8">
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+        <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+        <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+      </div>
+
+      <p class="text-xl text-gray-400 max-w-3xl mx-auto">
+        创建 Skill 只需要一个 SKILL.md 文件，包含元数据和指令
+      </p>
+    </div>
+
+    <!-- Basic Structure -->
+    <div class="glass-card rounded-3xl p-8 mb-12">
+      <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+        <svg class="w-7 h-7 text-claude-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+        SKILL.md 基本结构
+      </h3>
+      <div class="code-block rounded-xl p-6 overflow-x-auto">
+        <pre class="font-mono text-sm leading-relaxed"><code><span class="text-gray-500">---</span>
+<span class="text-claude-accent">name</span>: <span class="text-green-400">your-skill-name</span>
+<span class="text-claude-accent">description</span>: <span class="text-green-400">简述 Skill 的作用和使用场景 (Claude 用它来决定何时应用)</span>
+<span class="text-claude-accent">allowed-tools</span>: <span class="text-green-400">Read, Grep, Glob</span>  <span class="text-gray-500"># 可选：限制工具权限</span>
+<span class="text-claude-accent">license</span>: <span class="text-green-400">Complete terms in LICENSE.txt</span>  <span class="text-gray-500"># 可选：许可证信息</span>
+<span class="text-gray-500">---</span>
+
+<span class="text-claude-primary"># Your Skill Name</span>
+
+<span class="text-claude-secondary">## Instructions</span>
+提供清晰、分步的指导给 Claude。
+
+<span class="text-claude-secondary">## Examples</span>
+展示具体的使用示例。</code></pre>
+      </div>
+    </div>
+
+    <!-- Metadata Fields -->
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <div class="glass-card rounded-2xl p-6">
+        <h4 class="font-bold mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-claude-success"></span>
+          必需字段
+        </h4>
+        <div class="space-y-4">
+          <div>
+            <code class="text-claude-primary text-sm">name</code>
+            <p class="text-sm text-gray-400 mt-1">Skill 名称，只能用小写字母、数字和连字符（最多64字符）</p>
+          </div>
+          <div>
+            <code class="text-claude-primary text-sm">description</code>
+            <p class="text-sm text-gray-400 mt-1">Skill 的作用和使用场景（最多1024字符）<br><span class="text-claude-accent">这是 Claude 匹配的关键！</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="glass-card rounded-2xl p-6">
+        <h4 class="font-bold mb-4 flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-claude-accent"></span>
+          可选字段
+        </h4>
+        <div class="space-y-4">
+          <div>
+            <code class="text-claude-secondary text-sm">allowed-tools</code>
+            <p class="text-sm text-gray-400 mt-1">Skill 激活时 Claude 可无需权限使用的工具</p>
+          </div>
+          <div>
+            <code class="text-claude-secondary text-sm">model</code>
+            <p class="text-sm text-gray-400 mt-1">Skill 激活时使用的模型（如 claude-sonnet-4-20250514）</p>
+          </div>
+          <div>
+            <code class="text-claude-secondary text-sm">license</code>
+            <p class="text-sm text-gray-400 mt-1">许可证信息（如 "Complete terms in LICENSE.txt"）</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- File Structure -->
+    <div class="glass-card rounded-3xl p-8">
+      <h3 class="text-2xl font-bold mb-6">Skill 文件结构（渐进式披露）</h3>
+      <div class="grid lg:grid-cols-2 gap-8">
+        <div>
+          <h4 class="font-bold mb-4 text-claude-success">简单 Skill（单文件）</h4>
+          <div class="code-block rounded-xl p-4 text-sm">
+            <pre class="font-mono"><code class="text-white">my-skill/
+├── SKILL.md
+└── LICENSE.txt  <span class="text-gray-500"># 可选</span></code></pre>
+          </div>
+          <p class="text-sm text-gray-400 mt-3">适合简单任务、单一目的</p>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4 text-claude-primary">复杂 Skill（多文件）</h4>
+          <div class="code-block rounded-xl p-4 text-sm">
+            <pre class="font-mono"><code class="text-white">my-skill/
+├── SKILL.md          <span class="text-gray-500"># 概览和快速开始</span>
+├── LICENSE.txt       <span class="text-gray-500"># 许可证</span>
+├── reference.md      <span class="text-gray-500"># 详细 API 文档</span>
+├── examples.md       <span class="text-gray-500"># 使用示例</span>
+└── scripts/
+   └── helper.py      <span class="text-gray-500"># 工具脚本（零上下文执行）</span></code></pre>
+          </div>
+          <p class="text-sm text-gray-400 mt-3">支持文件按需加载，节省 token</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

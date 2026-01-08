@@ -1,0 +1,278 @@
+/* 全局样式 - Agent Skills Guide */
+
+/* Tailwind 基础样式 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 全局基础样式 */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* 为固定导航栏留出空间 */
+}
+
+body {
+  @apply antialiased;
+}
+
+/* 渐变文字 */
+.gradient-text {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 深色主题玻璃卡片（默认） */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* 深色主题代码块 */
+.code-block {
+  background: #252535;
+  border: 1px solid #3f3f50;
+}
+
+/* 代码块内的文字颜色增强 */
+.code-block .text-claude-error {
+  color: #f87171 !important; /* 更亮的红色 */
+}
+
+.code-block .text-claude-primary {
+  color: #818cf8 !important; /* 更亮的紫色 */
+}
+
+.code-block .text-claude-secondary {
+  color: #a78bfa !important; /* 更亮的紫罗兰色 */
+}
+
+.code-block .text-claude-accent {
+  color: #fbbf24 !important; /* 更亮的琥珀色 */
+}
+
+.code-block .text-claude-success {
+  color: #34d399 !important; /* 更亮的绿色 */
+}
+
+.code-block .text-gray-400 {
+  color: #d1d5db !important; /* 更亮的灰色 */
+}
+
+.code-block .text-gray-300 {
+  color: #e5e7eb !important; /* 更亮的灰色 */
+}
+
+.code-block .text-gray-200 {
+  color: #f3f4f6 !important; /* 最亮的灰色（接近白色） */
+}
+
+.code-block .text-gray-100 {
+  color: #f9fafb !important; /* 几乎白色，代码注释专用 */
+}
+
+/* 代码注释使用半透明白色 - 保持可读性和辅助文字层级 */
+.code-block .text-white\/85 {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* 导航链接 */
+.nav-link {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Section 进入动画 */
+.section-enter {
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.section-enter.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 技能标签 */
+.skill-tag {
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px -5px rgba(99, 102, 241, 0.3);
+}
+
+/* 主题切换按钮动画 */
+.theme-toggle {
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.1);
+}
+
+/* ========== 浅色主题覆盖样式 ========== */
+/* 当 html 没有 dark 类时应用（浅色模式） */
+html:not(.dark) body {
+  background-color: #fafafa;
+  color: #111827;
+}
+
+html:not(.dark) .glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.06);
+}
+
+html:not(.dark) .code-block {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+}
+
+/* 文字颜色覆盖 */
+html:not(.dark) .text-gray-400 { color: #4b5563; }
+html:not(.dark) .text-gray-300 { color: #374151; }
+
+/* 浅色模式下 text-white 改为深色 */
+html:not(.dark) .text-white { color: #000000 !important; }
+
+/* 导航链接颜色 */
+html:not(.dark) .nav-link { color: #1f2937; }
+html:not(.dark) .nav-link:hover { color: #000000; }
+
+/* 移动端菜单 */
+html:not(.dark) #mobile-menu {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+html:not(.dark) .mobile-nav-link {
+  color: #111827;
+}
+
+html:not(.dark) .mobile-nav-link:hover {
+  color: #374151;
+}
+
+/* 探索官方按钮 */
+html:not(.dark) .explore-official-btn {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #374151;
+}
+
+html:not(.dark) .explore-official-btn:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+/* Section 背景覆盖 */
+html:not(.dark) #how-it-works {
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+}
+
+html:not(.dark) #design-specs {
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+}
+
+html:not(.dark) #official-skills {
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+}
+
+html:not(.dark) #best-practices {
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+}
+
+html:not(.dark) section[class*="from-claude-dark"] {
+  background: linear-gradient(to bottom, #f5f5f5, #ffffff) !important;
+}
+
+html:not(.dark) section[class*="from-claude-card"] {
+  background: linear-gradient(to bottom, #ffffff, #f5f5f5) !important;
+}
+
+/* 品牌色优化 */
+html:not(.dark) .text-claude-primary {
+  color: #4f46e5;
+}
+
+html:not(.dark) .text-claude-secondary {
+  color: #7c3aed;
+}
+
+html:not(.dark) .text-claude-accent {
+  color: #d97706;
+}
+
+html:not(.dark) .text-claude-success {
+  color: #059669;
+}
+
+html:not(.dark) .text-claude-warning {
+  color: #d97706;
+}
+
+/* 品牌色背景优化 */
+html:not(.dark) .bg-claude-primary\/20 {
+  background-color: rgba(79, 70, 229, 0.15);
+}
+
+html:not(.dark) .bg-claude-secondary\/20 {
+  background-color: rgba(124, 58, 237, 0.15);
+}
+
+html:not(.dark) .bg-claude-accent\/20 {
+  background-color: rgba(217, 119, 6, 0.15);
+}
+
+html:not(.dark) .bg-claude-success\/20 {
+  background-color: rgba(5, 150, 105, 0.15);
+}
+
+html:not(.dark) .bg-claude-primary\/10 {
+  background-color: rgba(79, 70, 229, 0.08);
+}
+
+html:not(.dark) .bg-claude-secondary\/10 {
+  background-color: rgba(124, 58, 237, 0.08);
+}
+
+html:not(.dark) .bg-claude-primary\/5 {
+  background-color: rgba(79, 70, 229, 0.05);
+}
+
+html:not(.dark) .bg-claude-secondary\/5 {
+  background-color: rgba(124, 58, 237, 0.05);
+}
+
+html:not(.dark) .border-claude-primary {
+  border-color: rgba(79, 70, 229, 0.5);
+}
+
+html:not(.dark) .border-claude-secondary {
+  border-color: rgba(124, 58, 237, 0.5);
+}
+
+html:not(.dark) .border-claude-accent {
+  border-color: rgba(217, 119, 6, 0.5);
+}
