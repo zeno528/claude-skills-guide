@@ -12,11 +12,11 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'auto',
   },
-  // 如果部署到 GitHub Pages 子路径，取消下面注释
-  // base: '/claude-skills-guide',
-  // vite: {
-  //   build: {
-  //     assetsInlineLimit: 0,
-  //   },
-  // },
+  // GitHub Pages 子路径配置
+  base: '/claude-skills-guide',
+  vite: {
+    build: {
+      assetsInlineLimit: 0,
+    },
+  },
 });
