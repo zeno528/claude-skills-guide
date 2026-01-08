@@ -32,3 +32,6 @@ screenshot*.png
 
 # 项目文档
 README.md
+
+# Claude 配置
+.claude/
