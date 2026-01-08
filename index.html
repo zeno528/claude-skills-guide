@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agent Skills 完全指南 - Claude Code</title>
+    <!-- Favicon - 闪电图标 -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'><path d='M13 2L3 14h9l-1 8 10-12h-9l1-8z' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,8 +81,10 @@
         }
         .section-enter {
             opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease-out;
+            transform: translateY(8px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: opacity, transform;
         }
         .section-enter.visible {
             opacity: 1;
@@ -119,9 +123,11 @@
         /* 文字颜色覆盖 - 浅色模式下使用更深的颜色 */
         html:not(.dark) .text-gray-400 { color: #4b5563; }
         html:not(.dark) .text-gray-300 { color: #374151; }
-        /* 导航链接颜色 */
-        html:not(.dark) .nav-link { color: #4b5563; }
-        html:not(.dark) .nav-link:hover { color: #111827; }
+        /* 浅色模式下 text-white 改为深色，避免在浅色背景上看不见 */
+        html:not(.dark) .text-white { color: #000000 !important; }
+        /* 导航链接颜色 - 使用更深的颜色提高对比度（满足 WCAG 2.1 标准） */
+        html:not(.dark) .nav-link { color: #1f2937; }
+        html:not(.dark) .nav-link:hover { color: #000000; }
         /* 移动端菜单 */
         html:not(.dark) #mobile-menu {
             background-color: rgba(255, 255, 255, 0.95);
@@ -131,6 +137,85 @@
         }
         html:not(.dark) .mobile-nav-link:hover {
             color: #374151;
+        }
+        /* 探索官方按钮 - 浅色模式 */
+        html:not(.dark) .explore-official-btn {
+            background: rgba(0, 0, 0, 0.05);
+            border-color: rgba(0, 0, 0, 0.1);
+            color: #374151;
+        }
+        html:not(.dark) .explore-official-btn:hover {
+            background: rgba(0, 0, 0, 0.08);
+        }
+        /* Section 背景覆盖 - 浅色模式下使用浅色背景 */
+        html:not(.dark) #how-it-works {
+            background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+        }
+        html:not(.dark) #design-specs {
+            background: linear-gradient(to bottom, #ffffff, #f5f5f5);
+        }
+        html:not(.dark) #official-skills {
+            background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+        }
+        html:not(.dark) #best-practices {
+            background: linear-gradient(to bottom, #f5f5f5, #ffffff);
+        }
+        /* 浅色模式下其他section背景覆盖 */
+        html:not(.dark) section[class*="from-claude-dark"] {
+            background: linear-gradient(to bottom, #f5f5f5, #ffffff) !important;
+        }
+        html:not(.dark) section[class*="from-claude-card"] {
+            background: linear-gradient(to bottom, #ffffff, #f5f5f5) !important;
+        }
+        /* 浅色模式下品牌色优化 - 提高对比度 */
+        html:not(.dark) .text-claude-primary {
+            color: #4f46e5;  /* 更深的靛蓝色 */
+        }
+        html:not(.dark) .text-claude-secondary {
+            color: #7c3aed;  /* 更深的紫色 */
+        }
+        html:not(.dark) .text-claude-accent {
+            color: #d97706;  /* 更深的橙色 */
+        }
+        html:not(.dark) .text-claude-success {
+            color: #059669;  /* 更深的绿色 */
+        }
+        html:not(.dark) .text-claude-warning {
+            color: #d97706;  /* 更深的橙黄色 */
+        }
+        /* 浅色模式下品牌色背景优化 */
+        html:not(.dark) .bg-claude-primary\/20 {
+            background-color: rgba(79, 70, 229, 0.15);
+        }
+        html:not(.dark) .bg-claude-secondary\/20 {
+            background-color: rgba(124, 58, 237, 0.15);
+        }
+        html:not(.dark) .bg-claude-accent\/20 {
+            background-color: rgba(217, 119, 6, 0.15);
+        }
+        html:not(.dark) .bg-claude-success\/20 {
+            background-color: rgba(5, 150, 105, 0.15);
+        }
+        html:not(.dark) .bg-claude-primary\/10 {
+            background-color: rgba(79, 70, 229, 0.08);
+        }
+        html:not(.dark) .bg-claude-secondary\/10 {
+            background-color: rgba(124, 58, 237, 0.08);
+        }
+        html:not(.dark) .bg-claude-primary\/5 {
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+        html:not(.dark) .bg-claude-secondary\/5 {
+            background-color: rgba(124, 58, 237, 0.05);
+        }
+        html:not(.dark) .border-claude-primary {
+            border-color: rgba(79, 70, 229, 0.5);
+        }
+        html:not(.dark) .border-claude-secondary {
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+        html:not(.dark) .border-claude-accent {
+            border-color: rgba(217, 119, 6, 0.5);
         }
     </style>
 </head>
@@ -151,26 +236,35 @@
         <div class="max-w-7xl mx-auto">
             <div class="glass-card rounded-2xl px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-claude-primary to-claude-secondary flex items-center justify-center">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-claude-primary to-claude-secondary shadow-lg shadow-claude-primary/30">
+                        <!-- 优化闪电图标 - 填充样式，更醒目 -->
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                         </svg>
                     </div>
                     <span class="font-bold text-lg">Agent Skills</span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <!-- 桌面端导航链接 -->
-                    <div class="hidden md:flex items-center gap-4">
-                        <a href="#what-is-skill" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">什么是 Skills</a>
-                        <a href="#how-it-works" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">工作原理</a>
-                        <a href="#create-skill" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">创建 Skill</a>
-                        <a href="#design-specs" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">设计规范</a>
-                        <a href="#official-skills" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">官方 Skills</a>
-                        <a href="#examples" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">示例</a>
-                        <a href="#best-practices" class="nav-link text-gray-300 hover:text-white transition-colors cursor-pointer text-xs">最佳实践</a>
+                <div class="flex items-center gap-3">
+                    <!-- 桌面端导航链接 - 优化布局 -->
+                    <div class="hidden lg:flex items-center gap-1">
+                        <a href="#what-is-skill" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">什么是 Skills</a>
+                        <a href="#how-it-works" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">工作原理</a>
+                        <a href="#create-skill" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">创建 Skill</a>
+                        <a href="#design-specs" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">设计规范</a>
+                        <span class="text-gray-600 mx-1">•</span>
+                        <a href="#official-skills" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">官方 Skills</a>
+                        <a href="#examples" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">示例</a>
+                        <a href="#best-practices" class="nav-link px-3 py-1.5 rounded-lg text-gray-300 hover:text-white transition-colors cursor-pointer text-sm font-medium">最佳实践</a>
+                    </div>
+                    <!-- 中等屏幕简化导航 -->
+                    <div class="hidden md:flex lg:hidden items-center gap-1">
+                        <a href="#what-is-skill" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">介绍</a>
+                        <a href="#create-skill" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">创建</a>
+                        <a href="#official-skills" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">官方</a>
+                        <a href="#examples" class="nav-link px-2.5 py-1 rounded text-gray-300 hover:text-white transition-colors cursor-pointer text-xs font-medium">示例</a>
                     </div>
                     <!-- 主题切换按钮 -->
-                    <button id="theme-toggle" class="theme-toggle p-2 rounded-lg hover:bg-white/10 dark:hover:bg-white/10 light:hover:bg-gray-200 transition-colors cursor-pointer" aria-label="切换主题">
+                    <button id="theme-toggle" class="theme-toggle p-2 rounded-lg cursor-pointer" aria-label="切换主题">
                         <!-- 太阳图标 (浅色模式显示) -->
                         <svg id="sun-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
@@ -223,7 +317,7 @@
                 <a href="#create-skill" class="px-8 py-4 bg-gradient-to-r from-claude-primary to-claude-secondary rounded-xl font-semibold hover:opacity-90 transition-opacity cursor-pointer">
                     开始创建
                 </a>
-                <a href="#official-skills" class="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-colors cursor-pointer">
+                <a href="#official-skills" class="explore-official-btn px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-colors cursor-pointer">
                     探索官方 Skills
                 </a>
             </div>
@@ -234,8 +328,13 @@
     <section id="what-is-skill" class="py-20 px-4">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-primary font-semibold mb-4 block">概念解析</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">什么是 Agent Skills？</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     Skill 是一个 Markdown 文件，教 Claude 如何完成特定任务。当你的请求匹配 Skill 的用途时，Claude 会<strong class="text-white">自动应用</strong>它。
                 </p>
@@ -354,8 +453,13 @@
     <section id="how-it-works" class="py-20 px-4 bg-gradient-to-b from-claude-dark to-claude-card">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-secondary font-semibold mb-4 block">工作流程</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">Skills 如何工作？</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     当你发送请求时，Claude 经过以下步骤找到并使用相关的 Skills
                 </p>
@@ -493,8 +597,13 @@
     <section id="create-skill" class="py-20 px-4">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-accent font-semibold mb-4 block">实战指南</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">如何创建 Skill</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     创建 Skill 只需要一个 SKILL.md 文件，包含元数据和指令
                 </p>
@@ -601,8 +710,13 @@
     <section id="design-specs" class="py-20 px-4 bg-gradient-to-b from-claude-card to-claude-dark">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-warning font-semibold mb-4 block">设计规范</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">Skill 设计规范</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     遵循官方最佳实践，创建高质量、可维护的 Skills
                 </p>
@@ -719,8 +833,13 @@
     <section id="official-skills" class="py-20 px-4 bg-gradient-to-b from-claude-dark to-claude-card">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-success font-semibold mb-4 block">官方资源</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">Anthropic 官方 Skills</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     Anthropic 在 GitHub 上维护了一个官方 Skills 仓库，包含 16 个生产级 Skills
                 </p>
@@ -905,8 +1024,13 @@
     <section id="examples" class="py-20 px-4">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-accent font-semibold mb-4 block">实战示例</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">常见 Skill 示例</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     从简单到复杂，覆盖常见使用场景
                 </p>
@@ -1064,8 +1188,13 @@
     <section id="best-practices" class="py-20 px-4 bg-gradient-to-b from-claude-dark to-claude-card">
         <div class="max-w-6xl mx-auto section-enter">
             <div class="text-center mb-16">
-                <span class="text-claude-primary font-semibold mb-4 block">最佳实践</span>
                 <h2 class="text-4xl md:text-5xl font-bold mb-6">编写高质量 Skills</h2>
+                <!-- 装饰线 - 替代标签 -->
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                    <div class="w-2 h-2 rounded-full bg-gray-400 dark:bg-gray-500"></div>
+                    <div class="w-12 h-px bg-gray-300 dark:bg-gray-600"></div>
+                </div>
                 <p class="text-xl text-gray-400 max-w-3xl mx-auto">
                     基于官方 Skills 分析的实战准则
                 </p>
@@ -1332,9 +1461,10 @@
     <footer class="py-12 px-4 border-t border-claude-border">
         <div class="max-w-6xl mx-auto text-center">
             <div class="flex items-center justify-center gap-3 mb-6">
-                <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-claude-primary to-claude-secondary flex items-center justify-center">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-claude-primary to-claude-secondary shadow-lg shadow-claude-primary/30">
+                    <!-- 优化闪电图标 - 填充样式，更醒目 -->
+                    <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
                     </svg>
                 </div>
                 <span class="font-bold text-lg">Agent Skills</span>
@@ -1355,6 +1485,15 @@
             const html = document.documentElement;
             const isDark = html.classList.contains('dark');
 
+            // 主题切换前禁用所有过渡效果，防止闪烁
+            document.body.style.transition = 'none';
+            document.querySelectorAll('*').forEach(el => {
+                el.style.setProperty('transition', 'none', 'important');
+            });
+
+            // 强制重绘，确保样式立即生效
+            void document.body.offsetHeight;
+
             if (isDark) {
                 // 切换到浅色模式
                 html.classList.remove('dark');
@@ -1368,6 +1507,14 @@
                 sunIcon.classList.add('hidden');
                 moonIcon.classList.remove('hidden');
             }
+
+            // 主题切换完成后恢复过渡效果
+            setTimeout(() => {
+                document.body.style.transition = '';
+                document.querySelectorAll('*').forEach(el => {
+                    el.style.removeProperty('transition');
+                });
+            }, 50);
         }
 
         // 初始化主题图标
@@ -1423,6 +1570,28 @@
         document.querySelectorAll('.section-enter').forEach(section => {
             observer.observe(section);
         });
+
+        // 页面加载时移除视口内可见sections的动画类（避免闪烁）
+        const handleInitialSections = () => {
+            document.querySelectorAll('.section-enter').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                if (isVisible) {
+                    // 移除动画类，使元素直接显示（无淡入效果）
+                    section.classList.remove('section-enter');
+                    // 添加visible类确保元素可见
+                    section.classList.add('visible');
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }
+            });
+        };
+
+        // 立即执行（在DOM解析后立即处理）
+        handleInitialSections();
+
+        // 页面加载完成后再次执行（确保所有元素已渲染）
+        window.addEventListener('load', handleInitialSections);
 
         // ========== 平滑滚动 ==========
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
