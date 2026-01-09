@@ -7,13 +7,12 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
-  // GitHub Pages 部署配置
+  // 部署配置
   outDir: 'dist',
   build: {
     inlineStylesheets: 'auto',
   },
-  // GitHub Pages 子路径配置
-  base: '/claude-skills-guide',
+  // base: '/claude-skills-guide', // GitHub Pages 子路径配置（Cloudflare Pages 不需要）
   vite: {
     build: {
       assetsInlineLimit: 0,
