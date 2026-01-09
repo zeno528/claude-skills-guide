@@ -2,7 +2,7 @@
 
 > **让 Claude 学会你的工作方式——自动匹配专业知识，无需记忆命令**
 
-**在线访问**：https://ekko7778.github.io/claude-skills-guide/
+**在线访问**：https://claude-skills-guide.pages.dev/
 
 ---
 
@@ -32,7 +32,7 @@ Claude Code 的 Skills 系统功能强大，但对于新手来说可能难以理
 
 ## 🌐 网站地址
 
-- **GitHub Pages**：https://ekko7778.github.io/claude-skills-guide/
+- **Cloudflare Pages**：https://claude-skills-guide.pages.dev/
 - **GitHub 仓库**：https://github.com/Ekko7778/claude-skills-guide
 
 ---
