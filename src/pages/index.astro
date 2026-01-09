@@ -31,23 +31,35 @@ import Footer from '../components/Footer.astro';
 
   <!-- 滚动动画初始化脚本 -->
   <script>
-    // Section 进入动画
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
+    // Section 进入动画 - 立即执行，确保在 DOM 加载后运行
+    (function() {
+      // 延迟执行以确保 DOM 完全渲染
+      const initScrollAnimations = () => {
+        const observerOptions = {
+          threshold: 0.01,
+          rootMargin: '0px 0px -100px 0px'
+        };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
 
-    // 观察所有 section-enter 元素
-    document.querySelectorAll('.section-enter').forEach(el => {
-      observer.observe(el);
-    });
+        const sections = document.querySelectorAll('.section-enter');
+        sections.forEach(el => observer.observe(el));
+      };
+
+      // 确保在 DOM 准备好后执行
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollAnimations);
+      } else {
+        // 使用 setTimeout 确保在当前事件循环后执行
+        setTimeout(initScrollAnimations, 0);
+      }
+    })();
   </script>
 </BaseLayout>
