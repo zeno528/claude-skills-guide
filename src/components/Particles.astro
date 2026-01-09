@@ -36,7 +36,7 @@
   /* 光晕画布在上层，但仍然在内容后面 - 适中透明度 */
   #glow-canvas {
     z-index: 1;
-    opacity: 0.4; /* 适中的透明度 */
+    opacity: 0.25; /* 适中的透明度 */
   }
 
   /* 粒子画布在底层 */
@@ -46,7 +46,7 @@
 
   /* 浅色主题下的粒子颜色调整 - 适度降低 */
   html:not(.dark) #glow-canvas {
-    opacity: 0.25; /* 浅色模式下适度降低 */
+    opacity: 0.15; /* 浅色模式下适度降低 */
   }
 </style>
 
@@ -54,38 +54,38 @@
 <script is:inline>
   // ========== 炫酷粒子系统配置 ==========
   const PARTICLE_CONFIG = {
-    // 粒子数量（根据屏幕大小自适应）- 适度数量
-    particleCount: window.innerWidth < 768 ? 40 : 70,
+    // 粒子数量（根据屏幕大小自适应）- 适中偏少
+    particleCount: window.innerWidth < 768 ? 30 : 55,
 
-    // 粒子大小范围 - 适中尺寸
-    minSize: 1.2,
-    maxSize: 2.5,
+    // 粒子大小范围 - 适中偏小
+    minSize: 1,
+    maxSize: 2.2,
 
-    // 粒子移动速度 - 适中速度
-    minSpeed: 0.25,
-    maxSpeed: 0.6,
+    // 粒子移动速度 - 适中偏慢
+    minSpeed: 0.2,
+    maxSpeed: 0.5,
 
-    // 连线距离 - 适度连线
-    lineDistance: 110,
+    // 连线距离 - 适中偏少
+    lineDistance: 100,
 
-    // 鼠标交互距离 - 适度交互
-    mouseDistance: 140,
+    // 鼠标交互距离 - 适中偏小
+    mouseDistance: 120,
 
-    // 鼠标引力力度（负值=排斥，正值=吸引）- 适中力度
-    mouseForce: -2,
+    // 鼠标引力力度（负值=排斥，正值=吸引）- 适中偏弱
+    mouseForce: -1.5,
 
-    // 波浪效果参数 - 适中振幅
-    waveAmplitude: 0.3,      // 波浪振幅
+    // 波浪效果参数 - 适中偏弱
+    waveAmplitude: 0.2,      // 波浪振幅
     waveFrequency: 0.002,    // 波浪频率
-    waveSpeed: 0.009,         // 波浪速度
+    waveSpeed: 0.007,        // 波浪速度
 
-    // 闪烁效果 - 适度闪烁
-    twinkleChance: 0.003,    // 闪烁概率
-    twinkleSpeed: 0.04,      // 闪烁速度
+    // 闪烁效果 - 适中偏少
+    twinkleChance: 0.002,    // 闪烁概率
+    twinkleSpeed: 0.03,      // 闪烁速度
 
-    // 光晕效果 - 适中强度
-    glowSize: 10,            // 光晕大小
-    glowIntensity: 0.18,     // 光晕强度
+    // 光晕效果 - 适中偏弱
+    glowSize: 8,             // 光晕大小
+    glowIntensity: 0.12,     // 光晕强度
 
     // 渐变色配置（深色主题）
     colors: {
@@ -135,7 +135,7 @@
       this.color = colorSet[colorKeys[Math.floor(Math.random() * colorKeys.length)]];
 
       // 透明度 - 适中的基础透明度
-      this.opacity = Math.random() * 0.25 + 0.2; // 0.2 ~ 0.45（适中）
+      this.opacity = Math.random() * 0.2 + 0.15; // 0.15 ~ 0.35（适中）
       this.baseOpacity = this.opacity;
 
       // 闪烁相关
@@ -191,7 +191,7 @@
       if (this.isTwinkling) {
         this.twinklePhase += PARTICLE_CONFIG.twinkleSpeed;
         // 使用正弦波创造平滑的闪烁效果 - 适中闪烁幅度
-        this.opacity = this.baseOpacity + Math.sin(this.twinklePhase) * 0.15;
+        this.opacity = this.baseOpacity + Math.sin(this.twinklePhase) * 0.12;
 
         // 闪烁结束
         if (this.twinklePhase > Math.PI) {
@@ -309,8 +309,8 @@
       this.glowCanvas.width = window.innerWidth;
       this.glowCanvas.height = window.innerHeight;
 
-      // 根据屏幕大小调整粒子数量 - 适度数量
-      PARTICLE_CONFIG.particleCount = window.innerWidth < 768 ? 40 : 70;
+      // 根据屏幕大小调整粒子数量 - 适中偏少
+      PARTICLE_CONFIG.particleCount = window.innerWidth < 768 ? 30 : 55;
     }
 
     // 绘制动态连线
@@ -323,7 +323,7 @@
 
           if (distance < PARTICLE_CONFIG.lineDistance) {
             // 动态透明度（距离越近越亮）- 适中透明度
-            const opacity = (1 - distance / PARTICLE_CONFIG.lineDistance) * 0.12; // 适中的透明度
+            const opacity = (1 - distance / PARTICLE_CONFIG.lineDistance) * 0.08; // 适中的透明度
 
             // 创建渐变连线
             const gradient = this.ctx.createLinearGradient(
