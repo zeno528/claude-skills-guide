@@ -51,6 +51,21 @@ import Footer from '../components/Footer.astro';
 
         const sections = document.querySelectorAll('.section-enter');
         sections.forEach(el => observer.observe(el));
+
+        // 立即检查并显示已在视口中的元素
+        // 这确保页面加载时可见的元素立即显示，而不需要等待 IntersectionObserver 回调
+        const checkInitialVisibility = () => {
+          sections.forEach(section => {
+            const rect = section.getBoundingClientRect();
+            const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+            if (isVisible && !section.classList.contains('visible')) {
+              section.classList.add('visible');
+            }
+          });
+        };
+
+        // 立即检查一次
+        checkInitialVisibility();
       };
 
       // 确保在 DOM 准备好后执行
