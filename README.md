@@ -33,7 +33,7 @@ Claude Code 的 Skills 系统功能强大，但对于新手来说可能难以理
 ## 🌐 网站地址
 
 - **Cloudflare Pages**：https://claude-skills-guide.pages.dev/
-- **GitHub 仓库**：https://github.com/Ekko7778/claude-skills-guide
+- **GitHub 仓库**：[https://github.com/Ekko7778/claude-skills-guide](https://github.com/zeno528/claude-skills-guide)
 
 ---
 
